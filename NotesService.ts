@@ -1,8 +1,8 @@
-import Note from "./Notes.js";
+import Note from "./Notes";
 
 class NotesService {
 
-    create(note) {
+    create(note: object) {
         return Note.create(note);
     };
 
@@ -10,17 +10,17 @@ class NotesService {
         return Note.find();
     };
 
-    getOne(id) {
+    getOne(id: string) {
         if (!id) throw new Error('not specified id');
         return Note.findById(id);
     };
 
-    update(note, id) {
+    update(note: object, id: string) {
         if (!id) throw new Error('not specified id');
         return Note.findByIdAndUpdate(id, note, {new: true});
     }
 
-    delete(id) {
+    delete(id: string) {
         if (!id) throw new Error('not specified id');
         return Note.findByIdAndDelete(id);
     }

@@ -1,6 +1,6 @@
 import express from 'express';
-import mongoose from "mongoose";
-import router from "./Router.js";
+import mongoose, { ConnectOptions } from "mongoose";
+import router from "./Router";
 
 const PORT = 3000;
 const DB_URL = 'mongodb+srv://user:user@cluster0.odquj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -15,7 +15,7 @@ app.use('/api', router);
 
 async function startApp() {
     try {
-        await mongoose.connect(DB_URL, {useUnifiedTopology: true, useNewUrlParser: true})
+        await mongoose.connect(DB_URL, {useUnifiedTopology: true, useNewUrlParser: true} as ConnectOptions)
         app.listen(PORT, () => console.log('server start' + PORT));
     } catch (e) {
         console.log(e)

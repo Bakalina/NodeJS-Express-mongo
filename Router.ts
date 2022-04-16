@@ -1,7 +1,7 @@
-import {Router} from "express";
-import NoteController from "./NoteController.js";
+import express from "express";
+import NoteController from "./NoteController";
 
-const router = new Router();
+const router = express.Router();
 
 router.get('/notes/stats', NoteController.stats);
 router.post('/notes', NoteController.create);
