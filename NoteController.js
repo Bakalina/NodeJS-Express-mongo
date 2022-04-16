@@ -1,5 +1,6 @@
 import NotesService from "./NotesService.js";
 
+
 class NoteController {
     async create(req, res) {
         try {
@@ -30,7 +31,7 @@ class NoteController {
 
     async update(req, res) {
         try {
-            const updatedNote = await NotesService.update(req.body);
+            const updatedNote = await NotesService.update(req.body, req.params.id);
             return res.json(updatedNote);
         } catch (e) {
             res.status(500).json(e.message);
@@ -43,6 +44,15 @@ class NoteController {
             return res.json(note);
         } catch (e) {
             res.status(500).json(e.message);
+        }
+    }
+
+    async stats(req, res) {
+        try {
+            const notes = await NotesService.stats();
+            return res.json(notes);
+        } catch (e) {
+            res.status(500).json(e);
         }
     }
 
